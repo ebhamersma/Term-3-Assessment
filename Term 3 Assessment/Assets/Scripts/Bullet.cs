@@ -20,4 +20,10 @@ public class Bullet : MonoBehaviour
         transform.rotation = rotation;
         this.gameObject.GetComponent<SpriteRenderer>().color = color;
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "PlayspaceTrigger") Destroy(gameObject);
+        Debug.Log(collision.gameObject.name);
+    }
 }

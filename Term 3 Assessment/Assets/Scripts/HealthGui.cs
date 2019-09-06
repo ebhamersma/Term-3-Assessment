@@ -19,8 +19,8 @@ public class HealthGui : MonoBehaviour
         
     }
 
-    public void HealthDown()
+    public void SetHealthFill(float fillAmount)
     {
-        healthHexagon.fillAmount -= 4;
+        healthHexagon.fillAmount = fillAmount;
     }
 }

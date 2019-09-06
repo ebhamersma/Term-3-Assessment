@@ -19,7 +19,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveVelocity;
 
     //Health variables - self explanatory
-    private int maxHealth = 6;
+    [SerializeField]
+    private int maxHealth = 5;
+    [SerializeField]
     private int currentHealth;
 
     //Invinciblity after being hit by enemy
@@ -71,6 +73,8 @@ public class PlayerController : MonoBehaviour
             newPos.z = transform.position.z;
             transform.position = newPos;
         }
+
+        theHealthGui.SetHealthFill((float)currentHealth / maxHealth);
     }
 
     void FixedUpdate()
@@ -136,7 +140,7 @@ public class PlayerController : MonoBehaviour
             Vector2 playerDifference = transform.position - other.transform.position;
             playerDifference = playerDifference.normalized * playerForce;
             theRigidBody.AddForce(playerDifference, ForceMode2D.Impulse);
-            StartCoroutine(KnockbackCo(theRigidBody, "Player"));
+            StartCoroutine(KnockbackCo(theRigidBody, "player"));
 
             //Makes it so the player goes invincible for a little bit if hit by enemy
             if (invincibilityCounter == 0)
@@ -151,7 +155,6 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "EnemyBullet")
         {
             currentHealth -= 1;
-            theHealthGui.StartCoroutine("HealthDown");
         }
 
         if (currentHealth <= 0)
