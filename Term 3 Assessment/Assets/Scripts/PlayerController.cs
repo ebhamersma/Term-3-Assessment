@@ -156,6 +156,13 @@ public class PlayerController : MonoBehaviour
         {
             currentHealth -= 1;
         }
+        if (other.GetComponent<Bullet>() != null)
+        {
+            if (other.GetComponent<Bullet>().bulletType == "enemy")
+            {
+                currentHealth -= 1;
+            }
+        }
 
         if (currentHealth <= 0)
         {

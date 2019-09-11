@@ -116,10 +116,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c56f9bee225784e8f0fb031bcd0f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   speed: 0.02
+  startingHealth: 1
   currentHealth: 1
-  maxHealth: 0
+  bullet: {fileID: 5552095339357418405, guid: dd51d019553835e4985b02eb290a2265, type: 3}
 --- !u!61 &8455580071040559621
 BoxCollider2D:
   m_ObjectHideFlags: 0
