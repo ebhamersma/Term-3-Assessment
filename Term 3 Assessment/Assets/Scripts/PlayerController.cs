@@ -183,15 +183,15 @@ public class PlayerController : MonoBehaviour
     //Player won't keep moving backwards
     //Turns Kinematic mode of player back on so it doesn't screw with the rest of our program
     //allows for the player and the enemy to be knocked back from each other when they collide
-    private IEnumerator KnockbackCo(Rigidbody2D rigidB, string type)
+    private IEnumerator KnockbackCo(Rigidbody2D rigidBody, string type)
     {
-        if (rigidB != null)
+        if (rigidBody != null)
         {
             if (type == "enemy") yield return new WaitForSeconds(enemyknockTime);
             if (type == "player") yield return new WaitForSeconds(playerknockTime);
             if (type == "player") canMove = true;
-            rigidB.velocity = Vector2.zero;
-            rigidB.isKinematic = true;
+            rigidBody.velocity = Vector2.zero;
+            rigidBody.isKinematic = true;
         }
     }
     

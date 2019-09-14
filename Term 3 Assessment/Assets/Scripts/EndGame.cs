@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
-{
-    public string SampleScene;
+{    
+    public string mainMenu;
 
-    public string MainMenu;
+    public GameObject gameOverScreen;
 
-    public GameObject EndScreen;
+    public string sampleScene;
 
     // Start is called before the first frame update
     void Start()
@@ -23,13 +23,13 @@ public class EndGame : MonoBehaviour
 
     }
 
-    private void PlayAgainbtn()
+    public void PlayAgain()
     {
-        SceneManager.LoadScene(SampleScene);
+        SceneManager.LoadScene(sampleScene);
     }
 
-    private void QuittoMainbtn()
+    public void QuittoMain()
     {
-        SceneManager.LoadScene(MainMenu);
+        SceneManager.LoadScene(mainMenu);
     }
 }
