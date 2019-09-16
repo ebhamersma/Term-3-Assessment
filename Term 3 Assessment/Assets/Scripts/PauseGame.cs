@@ -11,10 +11,13 @@ public class PauseGame : MonoBehaviour
 
     private PlayerController thePlayer;
 
+    private PlayerController thePlayerController;
+
     // Start is called before the first frame update
     void Start()
     {
         thePlayer = FindObjectOfType<PlayerController>();
+        thePlayerController = FindObjectOfType<PlayerController>();
     }
 
     // Update is called once per frame
@@ -41,6 +44,7 @@ public class PauseGame : MonoBehaviour
 
         thePauseScreen.SetActive(true);
         thePlayer.canMove = false;
+        thePlayerController.gameMusic.Pause();        
     }
 
     public void ResumeGame()
@@ -48,12 +52,13 @@ public class PauseGame : MonoBehaviour
         //makes it so if the user clicks the resume game button when paused then the pausescreen will be deactivated and eveything in the world will be able to move again, and will start playing music again
         thePauseScreen.SetActive(false);
         thePlayer.canMove = true;
-
+        thePlayerController.gameMusic.Play();
         Time.timeScale = 1f;
     }
 
     public void QuittoMainMenu()
-    { 
+    {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(MainMenu);
     }
 }

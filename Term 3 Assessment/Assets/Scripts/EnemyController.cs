@@ -18,7 +18,8 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        player = GameObject.FindWithTag("Player");
+        if (GameObject.FindWithTag("Player") != null) player = GameObject.FindWithTag("Player");
+        else player = gameObject;
         startingHealth = currentHealth;
         StartCoroutine("EnemyBulletCycle");
     }
@@ -53,6 +54,7 @@ public class EnemyController : MonoBehaviour
             if (collision.GetComponent<Bullet>().bulletType == "player")
             {
                 currentHealth -= 1;
+                FindObjectOfType<Score>().scoreAmount += 1;
             }
         }
     }
@@ -62,7 +64,7 @@ public class EnemyController : MonoBehaviour
         while (true)
         {
             Instantiate(bullet, transform.position, transform.rotation);
-            yield return new WaitForSeconds(Random.Range(2f, 4f));
+            yield return new WaitForSeconds(Random.Range(1f, 3f));
         }
 
     }

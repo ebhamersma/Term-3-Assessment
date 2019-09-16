@@ -19,10 +19,9 @@ public class GUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
-        thetime += Time.deltaTime * speed;
-        string minutes = Mathf.Floor((thetime % 3600) / 60).ToString("00");
-        string seconds = (thetime % 60).ToString("00");
+       thetime += Time.deltaTime * speed;
+       string minutes = Mathf.Floor((thetime % 3600) / 60).ToString("00");
+       string seconds = (thetime % 60).ToString("00");
        text.text = minutes + ":" + seconds; 
     }
 

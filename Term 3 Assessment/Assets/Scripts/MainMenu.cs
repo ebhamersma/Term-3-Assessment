@@ -35,16 +35,6 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(HowToPlay);
     }
 
-    public void ScoreBtn()
-    {
-        SceneManager.LoadScene(HighScores);
-    }
-
-    public void SettingBtn()
-    {
-        SceneManager.LoadScene(Settings);
-    }
-
     public void Exit()
     {
         Application.Quit();
