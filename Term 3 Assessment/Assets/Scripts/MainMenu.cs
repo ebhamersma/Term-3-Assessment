@@ -25,6 +25,7 @@ public class MainMenu : MonoBehaviour
         
     }
 
+    //Makes it so if the player clicks on these buttons then they will load the appropriate scene
     public void PlayBtn()
     {
         SceneManager.LoadScene(SampleScene);

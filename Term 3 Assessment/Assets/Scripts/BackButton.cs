@@ -19,6 +19,7 @@ public class BackButton : MonoBehaviour
         
     }
 
+    //Loads the appropriate scene when button is pressed
     public void Back()
     {
         SceneManager.LoadScene(MainMenu);

@@ -56,6 +56,7 @@ public class PauseGame : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    //makes it so if the user clicks on this button then they will be taken to the main menu screen with the time scale staying at 1, allowing for no interruptions
     public void QuittoMainMenu()
     {
         Time.timeScale = 1f;

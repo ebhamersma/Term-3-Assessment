@@ -23,6 +23,7 @@ public class EndGame : MonoBehaviour
 
     }
 
+    //Makes it so if the player clicks on the button then it will load the appropriate scene
     public void PlayAgain()
     {
         SceneManager.LoadScene(sampleScene);
