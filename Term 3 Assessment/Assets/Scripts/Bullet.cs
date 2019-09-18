@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
         transform.position += transform.up * speed;
     }
 
+    // creates the bullet and makes it go forwards at the position the player was in when it was fired
     public void instantiateBullet (string type, float bSpeed, Quaternion rotation, Color color)
     {
         bulletType = type;
@@ -21,9 +22,9 @@ public class Bullet : MonoBehaviour
         this.gameObject.GetComponent<SpriteRenderer>().color = color;
     }
 
+    //Makes it so when the bullet leaves the playing area it is then destroyed
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.name == "PlayspaceTrigger") Destroy(gameObject);
-        Debug.Log(collision.gameObject.name);
     }
 }

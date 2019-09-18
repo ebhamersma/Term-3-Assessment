@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
     public GameObject DeathSplosion;
     public PlayerController Player;
     public GameObject bullet;
+    public float bulletCooldownMax;
+    public float bulletCooldown;
 
     //variables used for the player shaking and storing where the player died for the camera to zoom
     private Vector3 deathPos;
@@ -48,6 +50,10 @@ public class PlayerController : MonoBehaviour
 
     private CameraController theCameraController;
     private HealthGui theHealthGui;
+    public GameObject endScreen;
+
+    public AudioSource gameMusic;
+    public AudioSource deathMusic;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +63,7 @@ public class PlayerController : MonoBehaviour
         canMove = true;
         theCameraController = FindObjectOfType<CameraController>();
         theHealthGui = FindObjectOfType<HealthGui>();
+        gameMusic.Play();
     }
 
     // Update is called once per frame
@@ -95,11 +102,14 @@ public class PlayerController : MonoBehaviour
         //rotates the player to face mouse
         transform.up = mouseDirection;
         //makes it so if the player clicks with the mouse then a bullet will be fired
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && bulletCooldown <= 0)
         {
             Bullet newBullet = Instantiate(bullet, transform.position, transform.rotation).GetComponent<Bullet>();
             newBullet.instantiateBullet("player", 0.3f, transform.rotation, Color.green);
+            bulletCooldown = bulletCooldownMax;
         }
+
+        if (bulletCooldown > 0) bulletCooldown -= Time.fixedDeltaTime;
 
         if (invincibilityCounter > 0)
         {
@@ -166,25 +176,22 @@ public class PlayerController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            //if()
-           // {
-                StartCoroutine("DeathSequence");
-           // }
+           StartCoroutine("DeathSequence");
         }
     }
 
     //Player won't keep moving backwards
     //Turns Kinematic mode of player back on so it doesn't screw with the rest of our program
     //allows for the player and the enemy to be knocked back from each other when they collide
-    private IEnumerator KnockbackCo(Rigidbody2D rigidB, string type)
+    private IEnumerator KnockbackCo(Rigidbody2D rigidBody, string type)
     {
-        if (rigidB != null)
+        if (rigidBody != null)
         {
             if (type == "enemy") yield return new WaitForSeconds(enemyknockTime);
             if (type == "player") yield return new WaitForSeconds(playerknockTime);
             if (type == "player") canMove = true;
-            rigidB.velocity = Vector2.zero;
-            rigidB.isKinematic = true;
+            rigidBody.velocity = Vector2.zero;
+            rigidBody.isKinematic = true;
         }
     }
     
@@ -194,6 +201,8 @@ public class PlayerController : MonoBehaviour
         canMove = false;
         //stores the position in which the players health =< 0
         deathPos = transform.position;
+        gameMusic.Stop();
+        deathMusic.Play();
         //calls on the camera to make it zoom onto the player as he dies
         theCameraController.StartCoroutine("CameraZoom");
         //makes shaking true so that the player will shake
@@ -208,5 +217,6 @@ public class PlayerController : MonoBehaviour
         Player.gameObject.SetActive(false);
         //runs the particle effect
         Instantiate(DeathSplosion, Player.transform.position, Player.transform.rotation);
+        endScreen.SetActive(true);
     }
 }

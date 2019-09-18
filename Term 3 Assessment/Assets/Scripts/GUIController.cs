@@ -19,15 +19,12 @@ public class GUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
-        thetime += Time.deltaTime * speed;
-        string minutes = Mathf.Floor((thetime % 3600) / 60).ToString("00");
-        string seconds = (thetime % 60).ToString("00");
+        // controls the time text in the UI
+        // allows for the time to count how long you have been playing just like a normal clock would
+        // goes up by seconds and then overloads into minutes when necessary
+       thetime += Time.deltaTime * speed;
+       string minutes = Mathf.Floor((thetime % 3600) / 60).ToString("00");
+       string seconds = (thetime % 60).ToString("00");
        text.text = minutes + ":" + seconds; 
-    }
-
-    public void StartGame()
-    {
-       
     }
 }

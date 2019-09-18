@@ -25,6 +25,7 @@ public class MainMenu : MonoBehaviour
         
     }
 
+    //Makes it so if the player clicks on these buttons then they will load the appropriate scene
     public void PlayBtn()
     {
         SceneManager.LoadScene(SampleScene);
@@ -33,16 +34,6 @@ public class MainMenu : MonoBehaviour
     public void HelpBtn()
     {
         SceneManager.LoadScene(HowToPlay);
-    }
-
-    public void ScoreBtn()
-    {
-        SceneManager.LoadScene(HighScores);
-    }
-
-    public void SettingBtn()
-    {
-        SceneManager.LoadScene(Settings);
     }
 
     public void Exit()
